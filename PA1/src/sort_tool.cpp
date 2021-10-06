@@ -142,6 +142,29 @@ void SortTool::MaxHeapify(vector<int> &data, int root)
 {
     // Function : Make tree with given root be a max-heap if both right and left sub-tree are max-heap
     // TODO : Please complete max-heapify code here
+    int left = root * 2 + 1;
+    int right = root * 2 + 2;
+    int largest;
+    if (left <= heapSize - 1 && data[left] > data[root])
+    {
+        largest = left;
+    }
+    else
+    {
+        largest = root;
+    }
+    if (right <= heapSize - 1 && data[right] > data[largest])
+    {
+        largest = right;
+    }
+    if (largest != root)
+    {
+        // int temp = data[root];
+        // data[root] = data[largest];
+        // data[largest] = temp;
+        swap(data[root], data[largest]);
+        MaxHeapify(data, largest);
+    }
 }
 
 //Build max heap
@@ -150,4 +173,8 @@ void SortTool::BuildMaxHeap(vector<int> &data)
     heapSize = data.size(); // initialize heap size
     // Function : Make input data become a max-heap
     // TODO : Please complete BuildMaxHeap code here
+    for (int i = floor(heapSize / 2) - 1; i >= 0; i--)
+    {
+        MaxHeapify(data, i);
+    }
 }
