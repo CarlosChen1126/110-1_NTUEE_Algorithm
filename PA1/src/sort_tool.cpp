@@ -57,8 +57,7 @@ int SortTool::Partition(vector<int> &data, int low, int high)
     // Function : Partition the vector
     // TODO : Please complete the function
     // Hint : Textbook page 171
-    srand(5);
-    int x = data[rand()%data.size()];
+    int x = data[high];
     int i = low - 1;
     for (int j = low; j <= high - 1; j++)
     {
