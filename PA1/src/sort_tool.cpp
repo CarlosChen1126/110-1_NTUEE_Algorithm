@@ -9,6 +9,8 @@
 #include <cmath>
 using std::floor;
 #include <iostream>
+#include <stdlib.h>
+using std::rand;
 // Constructor
 SortTool::SortTool() {}
 
@@ -45,8 +47,8 @@ void SortTool::QuickSortSubVector(vector<int> &data, int low, int high)
     if (low < high)
     {
         int middle = Partition(data, low, high);
-        QuickSortSubVector(data, low, middle - 1);
-        QuickSortSubVector(data, middle + 1, high);
+        QuickSortSubVector(data, low, middle-1);
+        QuickSortSubVector(data, middle+1, high);
     }
 }
 
@@ -55,7 +57,8 @@ int SortTool::Partition(vector<int> &data, int low, int high)
     // Function : Partition the vector
     // TODO : Please complete the function
     // Hint : Textbook page 171
-    int x = data[high];
+    srand(5);
+    int x = data[rand()%data.size()];
     int i = low - 1;
     for (int j = low; j <= high - 1; j++)
     {
