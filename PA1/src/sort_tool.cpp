@@ -47,8 +47,8 @@ void SortTool::QuickSortSubVector(vector<int> &data, int low, int high)
     if (low < high)
     {
         int middle = Partition(data, low, high);
-        QuickSortSubVector(data, low, middle-1);
-        QuickSortSubVector(data, middle+1, high);
+        QuickSortSubVector(data, low, middle - 1);
+        QuickSortSubVector(data, middle + 1, high);
     }
 }
 
@@ -84,7 +84,7 @@ void SortTool::MergeSortSubVector(vector<int> &data, int low, int high)
     // TODO : Please complete MergeSortSubVector code here
     // Hint : recursively call itself
     //        Merge function is needed
-    if ((high - low) >= 1)
+    if (high > low)
     {
         int middle1 = floor((low + high) / 2);
         int middle2 = middle1 + 1;
@@ -97,49 +97,78 @@ void SortTool::MergeSortSubVector(vector<int> &data, int low, int high)
 // Merge
 void SortTool::Merge(vector<int> &data, int low, int middle1, int middle2, int high)
 {
-    // Function : Merge two sorted subvector
-    // TODO : Please complete the function
-    int left = low;
-    int right = middle2;
-    int combineindex = low;
-    vector<int> combined(data.size());
-    while (left <= middle1 && right <= high)
+    int n_one = middle1 - low + 1;
+    int n_two = high - middle1;
+    vector<int> L(n_one + 1);
+    vector<int> R(n_two + 1);
+    for (int i = 0; i < n_one; i++)
     {
-        if (data[left] < data[right])
+        L[i] = data[low + i];
+    }
+    for (int j = 0; j < n_two; j++)
+    {
+        R[j] = data[middle1 + j + 1];
+    }
+    L[n_one] = 10000000;
+    R[n_two] = 10000000;
+    int ii = 0;
+    int jj = 0;
+    for (int k = low; k <= high; k++)
+    {
+        if (L[ii] <= R[jj])
         {
-            combined[combineindex] = data[left];
-            left++;
-            combineindex++;
+            data[k] = L[ii];
+            ii++;
         }
         else
         {
-            combined[combineindex] = data[right];
-            right++;
-            combineindex++;
+            data[k] = R[jj];
+            jj++;
         }
     }
-    if (left == middle2)
-    {
-        while (right <= high)
-        {
-            combined[combineindex] = data[right];
-            combineindex++;
-            right++;
-        }
-    }
-    else
-    {
-        while (left <= middle1)
-        {
-            combined[combineindex] = data[left];
-            combineindex++;
-            left++;
-        }
-    }
-    for (int i = low; i < combineindex; i++)
-    {
-        data[i] = combined[i];
-    }
+    // Function : Merge two sorted subvector
+    // TODO : Please complete the function
+    //int left = low;
+    //int right = middle2;
+    // int combineindex = low;
+    // vector<int> combined(data.size());
+    // while (left <= middle1 && right <= high)
+    // {
+    //     if (data[left] < data[right])
+    //     {
+    //         combined[combineindex] = data[left];
+    //         left++;
+    //         combineindex++;
+    //     }
+    //     else
+    //     {
+    //         combined[combineindex] = data[right];
+    //         right++;
+    //         combineindex++;
+    //     }
+    // }
+    // if (left == middle2)
+    // {
+    //     while (right <= high)
+    //     {
+    //         combined[combineindex] = data[right];
+    //         combineindex++;
+    //         right++;
+    //     }
+    // }
+    // else
+    // {
+    //     while (left <= middle1)
+    //     {
+    //         combined[combineindex] = data[left];
+    //         combineindex++;
+    //         left++;
+    //     }
+    // }
+    // for (int i = low; i < combineindex; i++)
+    // {
+    //     data[i] = combined[i];
+    // }
 }
 
 // Heap sort method
