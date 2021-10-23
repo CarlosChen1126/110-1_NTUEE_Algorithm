@@ -6,11 +6,9 @@
 // **************************************************************************
 
 #include "sort_tool.h"
-#include <cmath>
-using std::floor;
+// #include <cmath>
+// using std::floor;
 #include <iostream>
-#include <stdlib.h>
-using std::rand;
 // Constructor
 SortTool::SortTool() {}
 
@@ -86,7 +84,7 @@ void SortTool::MergeSortSubVector(vector<int> &data, int low, int high)
     //        Merge function is needed
     if (high > low)
     {
-        int middle1 = floor((low + high) / 2);
+        int middle1 = (low + high) / 2;
         int middle2 = middle1 + 1;
         MergeSortSubVector(data, low, middle1);
         MergeSortSubVector(data, middle2, high);
@@ -128,47 +126,6 @@ void SortTool::Merge(vector<int> &data, int low, int middle1, int middle2, int h
     }
     // Function : Merge two sorted subvector
     // TODO : Please complete the function
-    //int left = low;
-    //int right = middle2;
-    // int combineindex = low;
-    // vector<int> combined(data.size());
-    // while (left <= middle1 && right <= high)
-    // {
-    //     if (data[left] < data[right])
-    //     {
-    //         combined[combineindex] = data[left];
-    //         left++;
-    //         combineindex++;
-    //     }
-    //     else
-    //     {
-    //         combined[combineindex] = data[right];
-    //         right++;
-    //         combineindex++;
-    //     }
-    // }
-    // if (left == middle2)
-    // {
-    //     while (right <= high)
-    //     {
-    //         combined[combineindex] = data[right];
-    //         combineindex++;
-    //         right++;
-    //     }
-    // }
-    // else
-    // {
-    //     while (left <= middle1)
-    //     {
-    //         combined[combineindex] = data[left];
-    //         combineindex++;
-    //         left++;
-    //     }
-    // }
-    // for (int i = low; i < combineindex; i++)
-    // {
-    //     data[i] = combined[i];
-    // }
 }
 
 // Heap sort method
@@ -222,7 +179,7 @@ void SortTool::BuildMaxHeap(vector<int> &data)
     heapSize = data.size(); // initialize heap size
     // Function : Make input data become a max-heap
     // TODO : Please complete BuildMaxHeap code here
-    for (int i = floor(heapSize / 2) - 1; i >= 0; i--)
+    for (int i = (heapSize / 2) - 1; i >= 0; i--)
     {
         MaxHeapify(data, i);
     }
