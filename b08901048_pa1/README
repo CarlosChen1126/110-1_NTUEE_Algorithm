@@ -6,7 +6,7 @@ SYNOPSIS:
 
 NTU_sort -[IS|MS|QS|HS] <input_file_name> <output_file_name>
 
-This program supports three different sorting methods: insertion sort, merge sort and heap sort.
+This program supports four different sorting methods: insertion sort, merge sort, quick sort and heap sort.
 =====
 DIRECTORY:
 
