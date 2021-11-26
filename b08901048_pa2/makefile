@@ -19,26 +19,8 @@ main_opt.o 	   	: src/main.cpp
 			$(CC) $(CFLAGS) $<  -o $@
 mps_opt.o	: src/MPS.cpp src/MPS.h
 			$(CC) $(CFLAGS) $(OPTFLAGS) $< -o $@
-
-# DEBUG Versionå
-# dbg : bin/mps_dbg
-# 	@echo -n ""
-
-# bin/mps_dbg	: sort_tool_dbg.o main_dbg.o lib
-# 			$(CC) $(DBGFLAGS) sort_tool_dbg.o main_dbg.o -ltm_usage -Llib -o bin/mps_dbg
-# main_dbg.o 	   	: src/main.cpp lib/tm_usage.h
-# 			$(CC) $(CFLAGS) $< -Ilib -o $@
-# sort_tool_dbg.o	: src/sort_tool.cpp src/sort_tool.h
-# 			$(CC) $(CFLAGS) $(DBGFLAGS) $< -o $@
-
-# lib: lib/libtm_usage.a
-
-# lib/libtm_usage.a: tm_usage.o
-# 	$(AR) $(ARFLAGS) $@ $<
-# tm_usage.o: lib/tm_usage.cpp lib/tm_usage.h
-# 	$(CC) $(CFLAGS) $<
-
 # clean all the .o and executable files
 clean:
 		rm -rf *.o 
+		rm ./bin/mps
 

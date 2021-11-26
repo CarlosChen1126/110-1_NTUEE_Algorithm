@@ -1,0 +1,23 @@
+This is Readme for PA2
+.
+├── README
+├── bin
+│   └── mps
+├── doc
+│   └── report.pdf
+├── main_opt.o
+├── makefile
+├── mps_opt.o
+└── src
+    ├── MPS.cpp
+    ├── MPS.h
+    └── main.cpp
+
+3 directories, 9 files
+./b08901048_pa2
+build:
+$ make
+
+run:
+$ ./bin/mps <input file> <output file>
+
