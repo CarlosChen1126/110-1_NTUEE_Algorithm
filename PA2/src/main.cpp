@@ -33,10 +33,11 @@ int main(int argc, char *argv[])
     //tmusg.periodStart();
     MPS mps(N);
     int ans = mps.MPSnum(chord_table,N, 0, N-1);
+    //int ans = mps.MPSnum(chord_table,N);
     cout <<"N: "<<N<<endl;
     cout<<"Ans: "<<ans<<endl;
-    mps.MPSsol(0,N,chord_table);
-    //mps.sort(mps.path_node);
+    mps.MPSsol(0,N-1,chord_table);
+    mps.sort(mps.path_node);
     //tmusg.getPeriodUsage(stat);
     //cout <<"The total CPU time: " << (stat.uTime + stat.sTime) / 1000.0 << "ms" << endl;
     //cout <<"memory: " << stat.vmPeak << "KB" << endl; // print peak memory

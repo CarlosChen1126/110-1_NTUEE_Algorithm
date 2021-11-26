@@ -2,7 +2,19 @@
 #include "MPS.h"
 #include <iomanip>
 using namespace std;        
-
+MPS::MPS(int N){
+    M = new int *[N];
+    for(int i=0;i<N;++i){
+        M[i]=new int[N];
+    }
+    for (int i = 0; i < N; i++)
+    {
+        for(int j=0;j<N;j++){
+            M[i][j]=-1;
+        }
+    }
+    NN=N;
+}
 // int MPS::MPSnum(vector<int> C, int N)
 // {
 //     M = new int *[N];
@@ -45,19 +57,7 @@ using namespace std;
 //     int ans =M[0][N-1];
 //     return ans;
 // }
-MPS::MPS(int N){
-    M = new int *[N];
-    for(int i=0;i<N;++i){
-        M[i]=new int[N];
-    }
-    for (int i = 0; i < N; i++)
-    {
-        for(int j=0;j<N;j++){
-            M[i][j]=-1;
-        }
-    }
-    NN=N;
-}
+
 int MPS::MPSnum(vector<int> C, int N,int i, int j)
 {
     int ans=M[i][j];
@@ -103,25 +103,24 @@ void MPS::MPSsol(int i, int j, vector<int> C){
         {
             MPSsol(i,j-1,C);
         }
-        else if( k == i){
-                path_node.push_back(k);
-                //cout<<k<<endl;
-                MPSsol(i+1, j-1, C);
-            
-        }
-        else 
+        else if (k >= i && k < j)
         {
-            if (MPSnum(C, NN, i, j-1) > (MPSnum(C, NN, i, k-1) + MPSnum(C, NN, k+1, j-1)+1))
-            //if(M[i][j-1]>M[i][k-1]+M[k+1][j-1]+1)
+            //if (MPSnum(C, NN, i, j-1) > (MPSnum(C, NN, i, k-1) + MPSnum(C, NN, k+1, j-1)+1))
+            if(M[i][j-1]>M[i][k-1]+M[k+1][j-1]+1)
             {
                 MPSsol(i, j-1, C);
             }
             else {
                 //cout<<k<<endl;
-                path_node.push_back(k);
                 MPSsol(i,k-1,C);
+                path_node.push_back(k);
                 MPSsol(k+1,j-1,C);
             }
+        }
+        else if( k == i){
+                path_node.push_back(k);
+                //cout<<k<<endl;
+                MPSsol(i+1, j-1, C);
         }
 
     }
