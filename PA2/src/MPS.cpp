@@ -80,24 +80,28 @@ int MPS::MPSnum(int* C, int N,int i, int j)
         }
         else if( k == i )
         {
-            //if(j-1 >i+1){
-            ans=MPSnum(C, N, i+1, j-1)+1;
-            //}
-            //else ans=1;
+            if(j == i+1){
+                ans=1;
+            }
+            else ans=MPSnum(C, N, i+1, j-1)+1;
             //ans=M[i+1][j-1]+1;
         }
         else 
         {
-            if (MPSnum(C, N, i, j-1) > (MPSnum(C, N, i, k-1) + MPSnum(C, N, k+1, j-1)+1))
-            //if(M[i][j-1]>M[i][k-1]+M[k+1][j-1]+1)
-            {
-               //ans=MPSnum(C, N, i, j-1);
-               ans=M[i][j-1];
-            }
-            else {
-                //M[i][j] = M[i][k-1] + M[k+1][j-1]+1;
-                //ans=MPSnum(C, N, i, k-1)+MPSnum(C, N, k+1, j-1)+1;
-                ans=M[i][k-1] + M[k+1][j-1]+1;
+            // if (MPSnum(C, N, i, j-1) > (MPSnum(C, N, i, k-1) + MPSnum(C, N, k+1, j-1)+1))
+            // //if(M[i][j-1]>M[i][k-1]+M[k+1][j-1]+1)
+            // {
+            //    //ans=MPSnum(C, N, i, j-1);
+            //    ans=M[i][j-1];
+            // }
+            // else {
+            //     //M[i][j] = M[i][k-1] + M[k+1][j-1]+1;
+            //     //ans=MPSnum(C, N, i, k-1)+MPSnum(C, N, k+1, j-1)+1;
+            //     ans=M[i][k-1] + M[k+1][j-1]+1;
+            // }
+            ans=ans=MPSnum(C, N, i, k-1)+MPSnum(C, N, k+1, j-1)+1;
+            if(ans<MPSnum(C, N, i, j-1)){
+                ans=M[i][j-1];
             }
         }
     }
@@ -113,24 +117,17 @@ void MPS::MPSsol(int i, int j, int* C){
         }
         else if( k == i){
                 path_node.push_back(k);
-                //cout<<k<<endl;
-                //cout<<k<<" "<<C[k]<<endl;
                 MPSsol(i+1, j-1, C);
         }
         else 
         {
             if (MPSnum(C, NN, i, j-1) > (MPSnum(C, NN, i, k-1) + MPSnum(C, NN, k+1, j-1)+1))
-            //if(M[i][j-1]>M[i][k-1]+M[k+1][j-1]+1)
             {
-                //path_node.push_back(k);
-                //cout<<k<<endl;
                 MPSsol(i, j-1, C);
             }
             else {
-                //cout<<k<<endl;
                 MPSsol(i,k-1,C);
                 path_node.push_back(k);
-                //cout<<k<<" "<<C[k]<<endl;
                 MPSsol(k+1,j-1,C);
             }
         }
