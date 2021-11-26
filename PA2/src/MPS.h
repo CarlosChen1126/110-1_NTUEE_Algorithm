@@ -8,11 +8,11 @@ class MPS
 {
     public:
         MPS(int);
-        int MPSnum(vector<int> , int, int, int);
+        ~MPS();
+        int MPSnum(int* , int, int, int);
         //int MPSnum(vector<int> , int);
-        void MPSsol(int, int, vector<int>);
+        void MPSsol(int, int, int*);
         vector<int> path_node;
-        void sort(vector<int>&);
     private:
         int **M;
         int NN;
