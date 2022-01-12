@@ -2,6 +2,7 @@
 #include "graph.h"
 #include <iomanip>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 #define WHITE 0
 #define GRAY 1
@@ -158,7 +159,7 @@ void graph::add_edges_to_MST()
         //for (int i = 0; i < adj_set[e.s].size(); i++)
         //{
         //use iterator+find to find the element in vector
-        vector<int>::iterator finding = std::find(adj_set[e.s].begin(), adj_set[e.s].end(), e.d);
+        vector<int>::iterator finding = find(adj_set[e.s].begin(), adj_set[e.s].end(), e.d);
         if (finding != adj_set[e.s].end())
         {
             adj_set[e.s].erase(finding);
