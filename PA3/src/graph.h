@@ -19,6 +19,8 @@ public:
     int p;
     int rank;
     int number;
+    int color;
+    int pi;
 };
 class graph
 {
@@ -35,7 +37,15 @@ public:
     void MST_Kruskal();
     static bool mycompare(edge &a, edge &b);
     void cb_u();
+    void create_ADJ(edge);
+    bool DFS(edge);
+    bool DFS_visit(int);
+    bool check_if_cycle();
+    void add_edges_to_MST();
+
     vector<edge> edge_set;
+    vector<int> *adj_set;
+    vector<edge> ans_set;
 
 private:
     char type;

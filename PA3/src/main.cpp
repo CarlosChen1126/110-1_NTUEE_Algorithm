@@ -29,10 +29,15 @@ int main(int argc, char *argv[])
         graph.MST_Kruskal();
         break;
     case 'd':
-        cout << "unfinished" << endl;
-        return 0;
+        graph.MST_Kruskal();
+        graph.add_edges_to_MST();
+        break;
+        //cout << "unfinished" << endl;
+        //return 0;
     }
     int weight = 0;
+    cout << graph.edge_set.size() << endl;
+
     for (int i = 0; i < graph.edge_set.size(); i++)
     {
         weight += graph.edge_set[i].w;
@@ -42,5 +47,6 @@ int main(int argc, char *argv[])
     {
         fout << graph.edge_set[i].s << " " << graph.edge_set[i].d << " " << graph.edge_set[i].w << endl;
     }
-    //graph.out();
+    if (graph.check_if_cycle())
+        cout << "cycle!" << endl;
 }
